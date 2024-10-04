@@ -2,7 +2,6 @@ import Home from '@/pages/home';
 import {
   IconSettings,
   IconCirclesFilled,
-  IconHome,
   IconBrandZoom,
   IconAi,
 } from '@tabler/icons-react';
