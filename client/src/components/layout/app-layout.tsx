@@ -3,11 +3,14 @@ import {
   IconSettings,
   IconCirclesFilled,
   IconBrandZoom,
+  IconHome,
   IconAi,
 } from '@tabler/icons-react';
+import Logo from '@/components/logo';
 import { Link, Outlet } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import NavLinks from '../nav-link';
+import { FooterText } from '../footer';
 
 interface LinkItem {
   title: string;
@@ -19,6 +22,13 @@ export default function AppLayout() {
   const location = useLocation();
 
   const links: LinkItem[] = [
+    {
+      title: 'Home',
+      icon: (
+        <IconHome className='h-full w-full text-neutral-500 dark:text-neutral-300' />
+      ),
+      to: '/home',
+    },
     {
       title: 'AI Health Assistant',
       icon: (
@@ -51,26 +61,14 @@ export default function AppLayout() {
   ];
   return (
     <>
-      <div className='animated fixed top-0 z-40 h-16 w-full bg-white text-gray-700 shadow-sm'>
+      <div className='sticky top-0 z-40 h-16 w-full bg-white text-gray-700 shadow-sm'>
         <div className='mx-auto flex max-w-screen-xl flex-col px-2 md:flex-row md:items-center md:justify-between'>
           <div className='flex w-full flex-row items-center justify-between p-4'>
             <Link
               to='/'
               className='focus:shadow-outline rounded-lg tracking-widest focus:outline-none'
             >
-              <svg
-                className='h-8 w-8 text-pink-600'
-                width='54'
-                height='54'
-                viewBox='0 0 54 54'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <title>Care AI</title>
-                <path
-                  fill='currentColor'
-                  d='M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z'
-                ></path>
-              </svg>
+              <Logo />
             </Link>
 
             <div className='flex items-center justify-center gap-3 align-middle'>
@@ -88,6 +86,9 @@ export default function AppLayout() {
       </div>
       <div className='flex flex-col justify-center align-middle'>
         {location.pathname == '/home' ? <Home /> : <Outlet />}
+      </div>
+      <div className='my-8'>
+        <FooterText className='mb-auto' />
       </div>
     </>
   );

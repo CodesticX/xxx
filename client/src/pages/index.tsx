@@ -39,6 +39,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+
       <section className='body-font overflow-hidden text-gray-600'>
         <div className='container mx-auto max-w-6xl px-20 py-24'>
           <div className='-my-8 divide-y-2 divide-gray-100'>
@@ -68,7 +69,181 @@ const Index = () => {
           </div>
         </div>
       </section>
-      <section className='my-24 flex flex-col items-center justify-center align-middle'>
+
+      <section className='container mx-auto max-w-6xl px-8 md:px-20 py-10'>
+        <div>
+          <div className='flex flex-row'>
+            <div className='hidden flex-col items-center md:flex'>
+              <div className='mr-4 flex w-32 flex-col items-center justify-center rounded border border-gray-300 py-5 uppercase'>
+                <div className='text-3xl font-black text-gray-500'>Step 1</div>
+                <div className='text-sm text-gray-500'>Idea</div>
+              </div>
+              <div className='h-full border-l-4 border-transparent'>
+                <div className='mr-4 h-full border-l-4 border-dashed border-gray-300'></div>
+              </div>
+            </div>
+            <div className='flex-auto rounded border border-gray-300'>
+              <div className='flex flex-col items-center md:flex-row'>
+                <div className='flex-auto'>
+                  <div className='pl-3 pt-3 text-sm font-normal uppercase text-gray-500 md:hidden'>
+                    <span className='font-black'>Step 1</span> - Idea
+                  </div>
+                  <div className='font p-3 text-3xl text-gray-800'>
+                    Find your best idea
+                  </div>
+                  <div className='px-3 pb-6'>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam facilis, voluptates error alias dolorem praesentium
+                    sit soluta iure incidunt labore explicabo eaque, quia
+                    architecto veritatis dolores, enim consequatur nihil ipsum.
+                  </div>
+                </div>
+                <div className='w-full p-5 md:w-96'>
+                  <img
+                    src='https://image.flaticon.com/icons/svg/1330/1330216.svg'
+                    alt='step 1'
+                    className='object-scale-down'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='flex flex-row items-start'>
+            <div className='border-r-4 border-t-4 border-transparent'>
+              <div className='ml-16 h-16 w-16 rounded-bl-full border-b-4 border-l-4 border-dashed border-gray-300'></div>
+            </div>
+            <div className='flex-auto border-t-4 border-transparent'>
+              <div className='h-16 border-b-4 border-dashed border-gray-300'></div>
+            </div>
+            <div className='mr-16 mt-16 h-16 w-16 rounded-tr-full border-r-4 border-t-4 border-dashed border-gray-300'></div>
+          </div>
+          <div className='flex flex-row-reverse'>
+            <div className='hidden flex-col items-center md:flex'>
+              <div className='ml-4 flex w-32 flex-col items-center justify-center rounded border border-gray-300 py-5 uppercase'>
+                <div className='text-3xl font-black text-gray-500'>Step 2</div>
+                <div className='text-sm text-gray-500'>Collaboration</div>
+              </div>
+              <div className='h-full border-r-4 border-transparent'>
+                <div className='ml-4 h-full border-l-4 border-dashed border-gray-300'></div>
+              </div>
+            </div>
+            <div className='flex-auto rounded border border-gray-300'>
+              <div className='flex flex-col items-center md:flex-row'>
+                <div className='flex-auto'>
+                  <div className='pl-3 pt-3 text-sm font-normal uppercase text-gray-500 md:hidden'>
+                    <span className='font-black'>Step 2</span> - Collaboration
+                  </div>
+                  <div className='font p-3 text-3xl text-gray-800'>
+                    Find your team and collaborate
+                  </div>
+                  <div className='px-3 pb-6'>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam facilis, voluptates error alias dolorem praesentium
+                    sit soluta iure incidunt labore explicabo eaque, quia
+                    architecto veritatis dolores, enim consequatur nihil ipsum.
+                  </div>
+                </div>
+                <div className='w-full p-5 md:w-96'>
+                  <img
+                    src='https://image.flaticon.com/icons/svg/1330/1330216.svg'
+                    alt='step 2'
+                    className='object-scale-down'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='flex flex-row-reverse items-start'>
+            <div className='border-l-4 border-t-4 border-transparent'>
+              <div className='mr-16 h-16 w-16 rounded-br-full border-b-4 border-r-4 border-dashed border-gray-300'></div>
+            </div>
+            <div className='flex-auto border-t-4 border-transparent'>
+              <div className='h-16 border-b-4 border-dashed border-gray-300'></div>
+            </div>
+            <div className='ml-16 mt-16 h-16 w-16 rounded-tl-full border-l-4 border-t-4 border-dashed border-gray-300'></div>
+          </div>
+          <div className='flex flex-row'>
+            <div className='hidden flex-col items-center md:flex'>
+              <div className='mr-4 flex w-32 flex-col items-center justify-center rounded border border-gray-300 py-5 uppercase'>
+                <div className='text-3xl font-black text-gray-500'>Step 3</div>
+                <div className='text-sm text-gray-500'>Planification</div>
+              </div>
+              <div className='h-full border-l-4 border-transparent'>
+                <div className='mr-4 h-full border-l-4 border-dashed border-gray-300'></div>
+              </div>
+            </div>
+            <div className='flex-auto rounded border border-gray-300'>
+              <div className='flex flex-col items-center md:flex-row'>
+                <div className='flex-auto'>
+                  <div className='pl-3 pt-3 text-sm font-normal uppercase text-gray-500 md:hidden'>
+                    <span className='font-black'>Step 3</span> - Planification
+                  </div>
+                  <div className='font p-3 text-3xl text-gray-800'>
+                    Make a good plan and prepare tasks
+                  </div>
+                  <div className='px-3 pb-6'>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam facilis, voluptates error alias dolorem praesentium
+                    sit soluta iure incidunt labore explicabo eaque, quia
+                    architecto veritatis dolores, enim consequatur nihil ipsum.
+                  </div>
+                </div>
+                <div className='w-full p-5 md:w-96'>
+                  <img
+                    src='https://image.flaticon.com/icons/svg/1330/1330216.svg'
+                    alt='step 3'
+                    className='object-scale-down'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='flex flex-row items-start'>
+            <div className='border-r-4 border-t-4 border-transparent'>
+              <div className='ml-16 h-16 w-16 rounded-bl-full border-b-4 border-l-4 border-dashed border-gray-300'></div>
+            </div>
+            <div className='flex-auto border-t-4 border-transparent'>
+              <div className='h-16 border-b-4 border-dashed border-gray-300'></div>
+            </div>
+            <div className='mr-16 mt-16 h-16 w-16 rounded-tr-full border-r-4 border-t-4 border-dashed border-gray-300'></div>
+          </div>
+          <div className='flex flex-row-reverse'>
+            <div className='hidden flex-col items-center md:flex'>
+              <div className='ml-4 flex w-32 flex-col items-center justify-center rounded border border-gray-300 py-5 uppercase'>
+                <div className='text-3xl font-black text-gray-500'>Step 4</div>
+                <div className='text-sm text-gray-500'>Implementation</div>
+              </div>
+            </div>
+            <div className='flex-auto rounded border border-gray-300'>
+              <div className='flex flex-col items-center md:flex-row'>
+                <div className='flex-auto'>
+                  <div className='pl-3 pt-3 text-sm font-normal uppercase text-gray-500 md:hidden'>
+                    <span className='font-black'>Step 4</span> - Implementation
+                  </div>
+                  <div className='font p-3 text-3xl text-gray-800'>
+                    Execute, impletement your solution
+                  </div>
+                  <div className='px-3 pb-6'>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam facilis, voluptates error alias dolorem praesentium
+                    sit soluta iure incidunt labore explicabo eaque, quia
+                    architecto veritatis dolores, enim consequatur nihil ipsum.
+                  </div>
+                </div>
+                <div className='w-full p-5 md:w-96'>
+                  <img
+                    src='https://image.flaticon.com/icons/svg/1330/1330216.svg'
+                    alt='step 4'
+                    className='object-scale-down'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className='m-8 flex flex-col items-center justify-center align-middle'>
         <h1 className='mb-8 text-3xl font-bold' id='faqs'>
           FAQs
         </h1>

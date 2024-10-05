@@ -182,7 +182,6 @@ export default function AI_Interface() {
       </div>
       <div className='sticky bottom-0 my-2 flex flex-row place-content-center gap-2 rounded-xl bg-white p-5'>
         <Input
-          autoFocus
           className='h-fit bg-white text-base md:h-[50px]'
           type='text'
           placeholder='Ask me something...'
