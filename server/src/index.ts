@@ -45,6 +45,9 @@ db_connect().then(() => {
     console.log(`Server Running on http://localhost:${PORT}`);
   });
 
+  // AI-Chat-Bot Route
+  app.use()
+  // health route
   app.get('/api/v1/health', (_, res: Response) => {
     res.status(200).json(new ApiResponse(200, 'Server is Healthy'));
     return;
