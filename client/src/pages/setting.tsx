@@ -1,6 +1,17 @@
+import { motion } from 'framer-motion';
+
 export default function Setting() {
   return (
-    <div className='bg-gray-50'>
+    <motion.div
+      initial={{ opacity: 0.0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        delay: 0.3,
+        duration: 0.8,
+        ease: 'easeInOut',
+      }}
+      className='bg-gray-50'
+    >
       <div className='mx-auto my-10 flex max-w-7xl flex-col overflow-hidden rounded-xl p-8 sm:shadow'>
         <div className='pt-4'>
           <h1 className='py-2 text-2xl font-semibold'>Account settings</h1>
@@ -71,6 +82,6 @@ export default function Setting() {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

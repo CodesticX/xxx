@@ -11,6 +11,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import NavLinks from '../nav-link';
 import { FooterText } from '../footer';
+import { cn } from '@/lib/utils';
 
 interface LinkItem {
   title: string;
@@ -19,34 +20,60 @@ interface LinkItem {
 }
 
 export default function AppLayout() {
-  const location = useLocation();
+  const pathname = useLocation().pathname;
 
   const links: LinkItem[] = [
     {
       title: 'Home',
       icon: (
-        <IconHome className='h-full w-full text-neutral-500 dark:text-neutral-300' />
+        <IconHome
+          className={cn(
+            'h-full w-full dark:text-neutral-300',
+            pathname === '/home' ? 'text-white' : 'text-neutral-500'
+          )}
+        />
       ),
       to: '/home',
     },
     {
       title: 'AI Health Assistant',
       icon: (
-        <IconAi className='h-full w-full text-neutral-500 dark:text-neutral-300' />
+        <IconAi
+          className={cn(
+            'h-full w-full text-neutral-500 dark:text-neutral-300',
+            pathname === '/home/ai-health-assistant'
+              ? 'text-white'
+              : 'text-neutral-500'
+          )}
+        />
       ),
       to: '/home/ai-health-assistant',
     },
     {
       title: 'Video Consultation',
       icon: (
-        <IconBrandZoom className='h-full w-full text-neutral-500 dark:text-neutral-300' />
+        <IconBrandZoom
+          className={cn(
+            'h-full w-full text-neutral-500 dark:text-neutral-300',
+            pathname === '/home/video-consultations'
+              ? 'text-white'
+              : 'text-neutral-500'
+          )}
+        />
       ),
       to: '/home/video-consultations',
     },
     {
       title: 'Cycle Tracker',
       icon: (
-        <IconCirclesFilled className='h-full w-full text-neutral-500 dark:text-neutral-300' />
+        <IconCirclesFilled
+          className={cn(
+            'h-full w-full text-neutral-500 dark:text-neutral-300',
+            pathname === '/home/cycle-tracker'
+              ? 'text-white'
+              : 'text-neutral-500'
+          )}
+        />
       ),
       to: '/home/cycle-tracker',
     },
@@ -54,11 +81,17 @@ export default function AppLayout() {
     {
       title: 'Setting',
       icon: (
-        <IconSettings className='h-full w-full text-neutral-500 dark:text-neutral-300' />
+        <IconSettings
+          className={cn(
+            'h-full w-full text-neutral-500 dark:text-neutral-300',
+            pathname === '/home/setting' ? 'text-white' : 'text-neutral-500'
+          )}
+        />
       ),
       to: '/home/setting',
     },
   ];
+
   return (
     <>
       <div className='sticky top-0 z-40 h-16 w-full bg-white text-gray-700 shadow-sm'>
@@ -66,7 +99,7 @@ export default function AppLayout() {
           <div className='flex w-full flex-row items-center justify-between p-4'>
             <Link
               to='/'
-              className='focus:shadow-outline rounded-lg tracking-widest focus:outline-none'
+              className='focus:shadow-outline flex items-center gap-1 rounded-lg tracking-widest focus:outline-none'
             >
               <Logo />
             </Link>
@@ -87,8 +120,8 @@ export default function AppLayout() {
       <div className='flex flex-col justify-center align-middle'>
         {location.pathname == '/home' ? <Home /> : <Outlet />}
       </div>
-      <div className='my-8'>
-        <FooterText className='mb-auto' />
+      <div className='border-t p-4'>
+        <FooterText />
       </div>
     </>
   );

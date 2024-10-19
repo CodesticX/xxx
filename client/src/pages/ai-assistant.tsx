@@ -1,198 +1,117 @@
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { SendHorizontal, User, Sparkles, FilePenLine } from 'lucide-react';
+import { SendHorizontal, User, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-export default function AI_Interface() {
+import axios from 'axios';
+
+interface Message {
+  type: 'user' | 'ai';
+  content: string;
+}
+
+async function AIContent(input: String): Promise<Message> {
+  const message: Object = await axios.post(
+    `http://localhost:8080/api/v1/assistant/ask`,
+    {
+      prompt: input,
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+  console.log('Message', message);
+  return {
+    type: 'ai',
+    content: message.data.data.response,
+  };
+}
+
+const AI_Interface: React.FC = () => {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState<string>('');
+
+  // useEffect(() => {
+  //   const loadMessages = async () => {
+  //     const intialMessage = await AIContent();
+  //     setMessages(intialMessage);
+  //   };
+  //   loadMessages();
+  // },[]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (input.trim()) {
+      const AI_Response = await AIContent(input);
+      setMessages([...messages, { type: 'user', content: input }, AI_Response]);
+      setInput('');
+    }
+  };
+
   return (
-    <div className='mx-auto mt-20 flex flex-col rounded-xl bg-pink-50 px-10'>
-      <div className='no-scrollbar flex flex-col gap-5 overflow-y-scroll rounded-xl p-10'>
-        <div className='mx-auto flex w-[100%] flex-col justify-center pt-0 md:max-w-[80%] md:px-5 lg:max-w-[80%] xl:pl-0'>
-          <div className='relative flex w-full flex-col pt-5'>
-            <div className='p mx-auto flex w-full max-w-[1000px] flex-col pb-5 pt-10'>
-              {/* AI-Chat Response */}
-              <div className='mb-10 flex w-full flex-col'>
-                <div className='mb-4 flex items-center'>
-                  <div className='mr-5 flex h-[40px] w-[40px] items-center justify-center rounded-full border bg-white p-2'>
-                    <User className='text-pink-800' />
-                  </div>
-                  <div className='flex w-full'>
-                    <Input
-                      readOnly
-                      type='text'
-                      value='Write me a paragraph about Mihai Viteazul'
-                      className='flex w-full rounded-lg bg-white p-2'
-                    />
-                    <Button
-                      variant='link'
-                      className='ml-2 flex items-center justify-center rounded-lg bg-white'
-                    >
-                      <FilePenLine className='text-pink-800' />
-                    </Button>
-                  </div>
+    <motion.div
+      initial={{ opacity: 0.0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        delay: 0.3,
+        duration: 0.8,
+        ease: 'easeInOut',
+      }}
+    >
+      <div className='mx-0 flex h-[90vh] flex-col pt-6 md:px-20'>
+        <div className='scrollbar-hide flex-1 space-y-4 overflow-y-auto p-4'>
+          {messages.map((message: Message, index: number) => (
+            <div
+              key={index}
+              className={`flex ${message.type === 'user' ? 'justify-start' : 'justify-end'}`}
+            >
+              <div
+                className={`flex max-w-[90%] md:max-w-[80%] ${message.type === 'user' ? 'flex-row' : 'flex-row-reverse'}`}
+              >
+                <div
+                  className={`flex h-fit w-fit items-center justify-center rounded-full p-2 ${message.type === 'user' ? 'ml-2 bg-black' : 'mr-2 bg-pink-500'}`}
+                >
+                  {message.type === 'user' ? (
+                    <User className='h-5 w-5 text-white' />
+                  ) : (
+                    <Sparkles className='h-5 w-5 text-white' />
+                  )}
                 </div>
-                <div className='flex'>
-                  <div className='mr-5 flex h-10 w-10 items-center justify-center rounded-full bg-pink-800 p-2'>
-                    <Sparkles className='text-white' />
-                  </div>
-                  <div className='flex w-full rounded-lg bg-pink-500 p-4 text-white shadow-sm'>
-                    <div>
-                      <p>
-                        <strong>Mihai Viteazul</strong>
-                      </p>
-                      <p>&nbsp;</p>
-                      <p>
-                        Mihai Viteazul, also known as Michael the Brave, was a
-                        Romanian prince who ruled in the late 16th century. He
-                        is celebrated for uniting Wallachia, Transylvania, and
-                        Moldavia. His legacy symbolizes unity and courage.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* AI-Chat Response */}
-              <div className='mb-10 flex w-full flex-col'>
-                <div className='mb-4 flex items-center'>
-                  <div className='mr-5 flex h-[40px] w-[40px] items-center justify-center rounded-full border bg-white'>
-                    <User className='text-pink-800' />
-                  </div>
-                  <div className='flex w-full'>
-                    <Input
-                      readOnly
-                      type='text'
-                      value='Write me a paragraph about Mihai Viteazul'
-                      className='flex w-full rounded-lg bg-white p-2'
-                    />
-                    <Button
-                      variant='link'
-                      className='ml-2 flex items-center justify-center rounded-lg bg-white'
-                    >
-                      <FilePenLine className='text-pink-800' />
-                    </Button>
-                  </div>
-                </div>
-                <div className='flex'>
-                  <div className='mr-5 flex h-10 w-10 items-center justify-center rounded-full bg-pink-800'>
-                    <Sparkles className='text-white' />
-                  </div>
-                  <div className='flex w-full rounded-lg bg-pink-500 p-4 text-white shadow-sm'>
-                    <div>
-                      <p>
-                        <strong>Mihai Viteazul</strong>
-                      </p>
-                      <p>&nbsp;</p>
-                      <p>
-                        Mihai Viteazul, also known as Michael the Brave, was a
-                        Romanian prince who ruled in the late 16th century. He
-                        is celebrated for uniting Wallachia, Transylvania, and
-                        Moldavia. His legacy symbolizes unity and courage.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* AI-Chat Response */}
-              <div className='mb-10 flex w-full flex-col'>
-                <div className='mb-4 flex items-center'>
-                  <div className='mr-5 flex h-[40px] w-[40px] items-center justify-center rounded-full border bg-white'>
-                    <User className='text-pink-800' />
-                  </div>
-                  <div className='flex w-full'>
-                    <Input
-                      readOnly
-                      type='text'
-                      value='Write me a paragraph about Mihai Viteazul'
-                      className='flex w-full rounded-lg bg-white p-2'
-                    />
-                    <Button
-                      variant='link'
-                      className='ml-2 flex items-center justify-center rounded-lg bg-white'
-                    >
-                      <FilePenLine className='text-pink-800' />
-                    </Button>
-                  </div>
-                </div>
-                <div className='flex'>
-                  <div className='mr-5 flex h-10 w-10 items-center justify-center rounded-full bg-pink-800'>
-                    <Sparkles className='text-white' />
-                  </div>
-                  <div className='flex w-full rounded-lg bg-pink-500 p-4 text-white shadow-sm'>
-                    <div>
-                      <p>
-                        <strong>Mihai Viteazul</strong>
-                      </p>
-                      <p>&nbsp;</p>
-                      <p>
-                        Mihai Viteazul, also known as Michael the Brave, was a
-                        Romanian prince who ruled in the late 16th century. He
-                        is celebrated for uniting Wallachia, Transylvania, and
-                        Moldavia. His legacy symbolizes unity and courage.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* AI-Chat Response */}
-              <div className='flex w-full flex-col'>
-                <div className='mb-4 flex items-center'>
-                  <div className='mr-5 flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white'>
-                    <User className='text-pink-800' />
-                  </div>
-                  <div className='flex w-full'>
-                    <Input
-                      readOnly
-                      type='text'
-                      value='Write me a paragraph about Mihai Viteazul'
-                      className='flex w-full rounded-lg bg-white p-2'
-                    />
-                    <Button
-                      variant='link'
-                      className='ml-2 flex items-center justify-center rounded-lg bg-white'
-                    >
-                      <FilePenLine className='text-pink-800' />
-                    </Button>
-                  </div>
-                </div>
-                <div className='flex'>
-                  <div className='mr-5 flex h-10 w-10 items-center justify-center rounded-full bg-pink-800'>
-                    <Sparkles className='text-white' />
-                  </div>
-                  <div className='flex w-full rounded-lg bg-pink-500 p-4 text-white shadow-sm'>
-                    <div>
-                      <p>
-                        <strong>Mihai Viteazul</strong>
-                      </p>
-                      <p>&nbsp;</p>
-                      <p>
-                        Mihai Viteazul, also known as Michael the Brave, was a
-                        Romanian prince who ruled in the late 16th century. He
-                        is celebrated for uniting Wallachia, Transylvania, and
-                        Moldavia. His legacy symbolizes unity and courage.
-                      </p>
-                    </div>
-                  </div>
+                <div
+                  className={`rounded-lg p-3 ${message.type === 'user' ? 'bg-gray-100' : 'bg-pink-100'}`}
+                >
+                  <p className='text-sm'>{message.content}</p>
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+        <div className='scroll-hidden mx-auto mb-5 flex w-[100%] flex-row justify-center align-middle'>
+          <div className='mx-auto w-[98%] rounded-xl border-t bg-white p-4 shadow-md'>
+            <form onSubmit={handleSubmit} className='flex space-x-2'>
+              <Input
+                className='flex-1'
+                placeholder='Type a message...'
+                value={input}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setInput(e.target.value)
+                }
+              />
+              <Button
+                type='submit'
+                className='bg-blue-500 text-white hover:bg-blue-600'
+              >
+                <SendHorizontal className='h-5 w-5' />
+              </Button>
+            </form>
           </div>
         </div>
       </div>
-      <div className='sticky bottom-0 my-2 flex flex-row place-content-center gap-2 rounded-xl bg-white p-5'>
-        <Input
-          className='h-fit bg-white text-base md:h-[50px]'
-          type='text'
-          placeholder='Ask me something...'
-        />
-        <Button
-          className='h-fit w-[50px] bg-pink-800 text-white md:h-[50px]'
-          type='submit'
-        >
-          <SendHorizontal />
-        </Button>
-      </div>
-    </div>
+    </motion.div>
   );
-}
+};
+
+export default AI_Interface;

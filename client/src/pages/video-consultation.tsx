@@ -1,6 +1,17 @@
+import { motion } from 'framer-motion';
+
 export default function VideoConsultation() {
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0.0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        delay: 0.3,
+        duration: 0.8,
+        ease: 'easeInOut',
+      }}
+      className='relative flex flex-col items-center justify-center gap-4 px-4 text-center align-middle'
+    >
       <section className="flex bg-white font-['Poppins']">
         <div className='max-w-8xl relative mx-auto my-auto w-full bg-pink-600 px-6 py-12 leading-4 shadow-lg sm:px-8 lg:w-2/3 lg:px-10 lg:py-16 xl:w-3/5 xl:px-16 xl:py-20'>
           <div className='relative z-10 w-full'>
@@ -74,7 +85,7 @@ export default function VideoConsultation() {
         </div>
       </section>
 
-      <section className='w-screen py-3 leading-6 text-pink-900'>
+      <section className='py-3 leading-6 text-pink-900'>
         <div className='mx-auto max-w-5xl px-4 sm:px-6 lg:px-8'>
           <div className='mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:mt-16'>
             <div className='mx-auto my-10 flex max-w-xs flex-col items-center rounded-xl border px-4 py-4 text-center md:max-w-lg md:flex-row md:items-start md:text-left'>
@@ -167,6 +178,6 @@ export default function VideoConsultation() {
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

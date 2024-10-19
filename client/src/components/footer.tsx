@@ -13,14 +13,8 @@ export function FooterText({ className, ...props }: React.ComponentProps<'p'>) {
       {...props}
     >
       Open source AI chatbot built with{' '}
-      <ExternalLink href='https://cloud.google.com/vertex-ai'>
-        Google Gemini
-      </ExternalLink>
-      , <ExternalLink href='https://react.dev/'>React.js</ExternalLink> and{' '}
-      <ExternalLink href='https://github.com/vercel/ai'>
-        Vercel AI SDK
-      </ExternalLink>
-      .
+      <ExternalLink href='https://www.llama.com/'>Meta Llama 3-8B</ExternalLink>
+      , <ExternalLink href='https://react.dev/'>React.js</ExternalLink>.
     </p>
   );
 }
